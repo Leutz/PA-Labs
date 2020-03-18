@@ -29,6 +29,7 @@ public class OnlineDocument implements Serializable, Document {
             try {
                 Desktop.getDesktop().browse(url);
             } catch (IOException e) {
+                System.err.println("Unexpected error opening the provided link!");
                 e.printStackTrace();
             }
         }

@@ -2,6 +2,7 @@ package docmanagement;
 
 import java.awt.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -20,10 +21,14 @@ public class LocalDocument implements Serializable, Document {
 
     @Override
     public void view(){
-
         try {
             Desktop.getDesktop().open(file);
-        } catch (IOException e) {
+        } catch (FileNotFoundException e){
+            System.err.println("File " + file + " not found!");
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            System.err.println("Unexpected error opening the file!");
             e.printStackTrace();
         }
     }

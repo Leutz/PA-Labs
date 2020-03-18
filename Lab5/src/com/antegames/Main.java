@@ -26,6 +26,7 @@ public class Main {
         /* Loading a catalog */
         Catalog catalog2 = ceo.load("Catalog");
 
+        /* Calls view on every document in the catalog */
         catalog2.viewAll();
     }
 }

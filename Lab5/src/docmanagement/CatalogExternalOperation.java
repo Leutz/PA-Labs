@@ -15,7 +15,16 @@ public class CatalogExternalOperation {
              catalog = (Catalog)in.readObject();
             fis.close();
 
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
+            System.err.println("Error deserializing. Class does not exist!");
+            e.printStackTrace();
+            return null;
+        } catch (FileNotFoundException e) {
+            System.err.println("File " + name + " not found!");
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
+            System.err.println("Unexpected error opening the catalog file!");
             e.printStackTrace();
             return null;
         }
@@ -30,7 +39,8 @@ public class CatalogExternalOperation {
             out.writeObject(catalog);
             out.flush();
             fos.close();
-        } catch (IOException e) {
+        }catch (IOException e) {
+            System.err.println("Unexpected error saving the catalog file!");
             e.printStackTrace();
         }
     }
